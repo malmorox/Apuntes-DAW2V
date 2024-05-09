@@ -68,12 +68,11 @@ Recargamos Apache para aplicar los cambios de configuración:
 $=> sudo systemctl reload apache2
 ```
 
-## DOKUWIKI
-
-
-
 ## PHPDOCS
 #### [Documentación de instalación](https://docs.phpdoc.org/3.0/guide/getting-started/installing.html#installation)
+```apache
+$=> sudo apt install php8.1-cli
+```
 ```apache
 $=> sudo apt install php-mbstring
 ```
@@ -85,15 +84,33 @@ $=> cd myDocs
 $=> wget https://phpdoc.org/phpDocumentor.phar
 ```
 //Carpetapersonal (home)
-```apache
-$=> chmod u+x phpDocumentor.phar
+```php
+<?php
+    class Perro {
+        public $nombre;
+        /**
+        * Hace que el perro ladre
+        *
+        * @param integer $veces indica el número de ladridos
+        * @param string $tipo indica el ladrido por defecto “Guau”
+        *
+        */
+        public ladra(integer $veces, string $tipo="Guau")  {
+
+        }
+    }
+?>
 ```
-Hay que tener instalado el php-cli
 ```apache
-$=> php ./phpDocumentor.phar 
+$=> chmod a+x phpDocumentor.phar
 ```
 ```apache
-$=> ./phpDocumentor.phar run-d rutadelsrc/-trutadondequeremoseldocs/docs/
+$=> mv phpDocumentor.phar /usr/local/bin/phpDocumentor 
+```
+
+
+```apache
+$=> phpDocumentor run -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
 ```
 
 ## WORDPRESS
@@ -115,6 +132,23 @@ Remove anonymous users? [Y/n] => Y
 Disallow root login remotely? [Y/n] => Y
 Remove test database and access to it? [Y/n] => Y
 Reload privilege tables now? [Y/n] => Y
+```
+```bash
+MariaDB [(none)]> CREATE DATABASE marcos;
+Query 0K, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> CREATE USER 'marcos'@'localhost' IDENTIFIED BY 'marcos';
+Query OK, O rows affected (0.002 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES on marcos.* TO 'marcos'e'localhost';
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [(none)]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.000 sec)
+```
+libapache2-mod-php
+```apache
+$=> sudo apt install mariadb-server
 ```
 ```apache
 $=> sudo apt install php-mysql
