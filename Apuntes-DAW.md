@@ -33,9 +33,19 @@ $=> git config--global user.mail nombre@daw.git
 
 ### Comandos para guardar cambios
 
- $=> git status // Estado del repositorio
- $=> git add // Añadir al Stage
- $=> git commit // Hecha la foto
+```apache
+$=> git status // Estado del repositorio
+```
+
+
+```apache
+$=> git add // Añadir al Stage
+```
+
+
+```apache
+$=> git commit // Hecha la foto
+```
 
 # Servicios
 
