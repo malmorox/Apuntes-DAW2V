@@ -83,6 +83,11 @@ $=> cd myDocs
 ```apache
 $=> wget https://phpdoc.org/phpDocumentor.phar
 ```
+puede ser que no venga instalado php-xml en la instalacion anterior del phpDocumentor:
+```apache
+    apt install php-xml
+```
+
 //Carpetapersonal (home)
 ```php
 <?php
