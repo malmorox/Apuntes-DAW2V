@@ -1,3 +1,44 @@
+# Git y Github
+
+### ¿Qué necesitamos?
+Necesitaremos git:
+```apache
+$=> sudo apt install git
+```
+
+## Repositorio en local con Git
+
+###  Crear el repositorio git
+
+Comenzamos creando el directorio donde quereamos inicicalizar el repositorio git:
+```apache
+$=> mkdir repositorio
+$=> cd repositorio/
+```
+Inicializamos git:
+```apache
+$=> git init
+```
+### Borrar repositorio git
+
+```apache
+$=> rm -r .git/
+```
+### Introducir datos usuario al git local
+
+```apache
+$=> git config--global user.name nombre
+$=> git config--global user.mail nombre@daw.git
+```
+
+### Comandos para guardar cambios
+
+ $=> git status // Estado del repositorio
+ $=> git add // Añadir al Stage
+ $=> git commit // Hecha la foto
+
+# Servicios
+
 # Configuración de Apache2
 
 ## Paso 1: Instalar Apache
@@ -83,7 +124,7 @@ $=> cd myDocs
 ```apache
 $=> wget https://phpdoc.org/phpDocumentor.phar
 ```
-//Carpetapersonal (home)
+
 ```php
 <?php
     class Perro {
@@ -112,79 +153,71 @@ $=> mv phpDocumentor.phar /usr/local/bin/phpDocumentor
 ```apache
 $=> phpDocumentor run -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
 ```
+Si nos da error, deberemos instalar PHP XML, ya que puede ser que no venga instalado:
+```apache
+$=> sudo apt install php8.1-xml
+```
 
 ## WORDPRESS
 
 #### [Instalación de Wordpress](https://es.wordpress.org/download/) <span style="font-size: xx-small;"> (En el cliente) </span>
 
 ### ¿Qué necesitamos?
-Necesitaremos PHP 7.4 o superior y  MySQL 5.7/MariaDB 10.4 o superior.
-
-Lo haremos con MySQL:
+Necesitaremos PHP 7.4 o superior y  MySQL 5.7-MariaDB 10.4 o superior.
 
 ```apache
-$=> sudo apt install mysql_secure_installation
+$=> sudo apt install mariadb-server
 ```
 ```bash
-Switch to unix_socket authentication [Y/n] => Y
-Change the root password? [Y/n] => n
-Remove anonymous users? [Y/n] => Y
-Disallow root login remotely? [Y/n] => Y
-Remove test database and access to it? [Y/n] => Y
-Reload privilege tables now? [Y/n] => Y
-```
-```bash
-MariaDB [(none)]> CREATE DATABASE marcos;
+MariaDB [(none)]> CREATE DATABASE chistes;
 Query 0K, 1 row affected (0.000 sec)
 
-MariaDB [(none)]> CREATE USER 'marcos'@'localhost' IDENTIFIED BY 'marcos';
+MariaDB [(none)]> CREATE USER 'chistes'@'localhost' IDENTIFIED BY 'chistes';
 Query OK, O rows affected (0.002 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES on marcos.* TO 'marcos'e'localhost';
+MariaDB [(none)]> GRANT ALL PRIVILEGES on marcos.* TO 'chistes'@'localhost';
 Query OK, 0 rows affected (0.009 sec)
 
 MariaDB [(none)]> FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0.000 sec)
 ```
 libapache2-mod-php
-```apache
-$=> sudo apt install mariadb-server
-```
+
 ```apache
 $=> sudo apt install php-mysql
 ```
 
 ### Configuracion de usuario
 ```apache
-$=> sudo adduser marcos
-        New password: marcos
-        Retype new password: marcos
+$=> sudo adduser chistes
+        New password: chistes
+        Retype new password: chistes
         Is the information correct? [Y/n] Y
 ```
 ```apache
-$=> sudo mkdir /var/www/marcos
+$=> sudo mkdir /var/www/chistes
 ```
 ```apache
-$=> sudo chown marcos:marcos /var/www/marcos
+$=> sudo chown chistes:chistes /var/www/chistes
 ```
 
 ### Configuración de sitio con apache2
 ```apache
-$=> sudo nano /etc/apache2/sites-available/005-marcos.conf
+$=> sudo nano /etc/apache2/sites-available/005-chistes.conf
 ```
 ```apache
 <VirtualHost *:80>
-    ServerName marcos.es
-    DocumentRoot /var/www/marcos
+    ServerName chist.es
+    DocumentRoot /var/www/chistes
     
-    AssignUserId marcos marcos
+    AssignUserId chistes chistes
 
-    ErrorLog ${APACHE_LOG_DIR}/marcos.error.log
-    CustomLog ${APACHE_LOG_DIR}/marcos.access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/chistes.error.log
+    CustomLog ${APACHE_LOG_DIR}/chistes.access.log combined
 </VirtualHost>
 ```
 ```apache
-$=> sudo a2ensite 005-marcos.conf
+$=> sudo a2ensite 005-chistes.conf
 ```
 ```apache
 $=> sudo systemctl reload apache2
