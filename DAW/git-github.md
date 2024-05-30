@@ -5,7 +5,7 @@
 Necesitaremos git:
 
 ```apache
-$=> sudo apt install git
+ sudo apt install git
 ```
 
 ## Repositorio en local con Git
