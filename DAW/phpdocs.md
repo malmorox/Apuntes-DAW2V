@@ -2,18 +2,18 @@
 
 ### [Documentación de instalación](https://docs.phpdoc.org/3.0/guide/getting-started/installing.html#installation) (Página oficial)
 
-#### Necesitaremos estos paquetes:
+#### Necesitaremos estos paquetes
 
 ```apache
 sudo apt install php-cli php-mbstring php-xml
 ```
 
 Creamos la carpeta que contendrán nuestros archivos PHP que queremos documentar:
+
 ```apache
 mkdir myDocs
 cd myDocs
 ```
-
 
 **Ejemplo de clase para PHPDocs:** (Perro.php)
 
@@ -42,22 +42,24 @@ cd myDocs
 
 ## Instalación de PHPDocumentor
 
-### En la carpeta personal (home):
+### En la carpeta personal (home)
 
 ```apache
 wget https://phpdoc.org/phpDocumentor.phar
 ```
+
 ```apache
 chmod a+x phpDocumentor.phar
 ```
 
 **Si queremos tener phpDocumentor en bin:** (Como comando)
 
-
 ```apache
 mv phpDocumentor.phar /usr/local/bin/phpDocumentor 
 ```
-Al runnearlo, deberemos indicarle la carpeta donde estan nuestros archivos PHP para la documentación (en este caso la ruta de __myDocs__) y la carpeta tarjet donde se va a desplegar nuestro PHPDocs
+
+Al runnearlo, deberemos indicarle la carpeta donde estan nuestros archivos PHP para la documentación (en este caso la ruta de **myDocs**) y la carpeta tarjet donde se va a desplegar nuestro PHPDocs
+
 ```apache
 phpDocumentor -d rutaDelSrc/ -t rutaDondeQueremosElDocs/docs/
 ```
