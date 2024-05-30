@@ -90,7 +90,9 @@ RewriteRule ^([^/]+)/([^/]+)/?$ index.php?presentacion=$1&mensaje=$2 [NC]
 
 *IMPORTANTE PON / AL FINAL* (si has no has puesto el **/?** al final de la regla del .htaccess)
 
-> webname.dominio/xxx/xxx/
+```apache
+webname.dominio/xxx/xxx/
+```
 
 ## Banderas de mod_rewrite
 

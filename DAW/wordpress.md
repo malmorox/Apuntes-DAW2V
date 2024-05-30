@@ -6,28 +6,25 @@
 
 Necesitaremos PHP 7.4 o superior y  MySQL 5.7-MariaDB 10.4 o superior.
 
-```apache
-$=> sudo apt install mariadb-server
-```
-
-```bash
-MariaDB [(none)]> CREATE DATABASE chistes;
-Query 0K, 1 row affected (0.000 sec)
-
-MariaDB [(none)]> CREATE USER 'chistes'@'localhost' IDENTIFIED BY 'chistes';
-Query OK, O rows affected (0.002 sec)
-
-MariaDB [(none)]> GRANT ALL PRIVILEGES on marcos.* TO 'chistes'@'localhost';
-Query OK, 0 rows affected (0.009 sec)
-
-MariaDB [(none)]> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.000 sec)
-```
-
-libapache2-mod-php
+**mysql_secure_installation:**
 
 ```apache
-$=> sudo apt install php-mysql
+Switch to unix_socket authentication [Y/n] => Y
+Change the root password? [Y/n] => n
+Remove anonymous users? [Y/n] => Y
+Disallow root login remotely? [Y/n] => Y
+Remove test database and access to it? [Y/n] => Y
+Reload privilege tables now? [Y/n] => Y
+```
+
+si da algun error puede ser necesario instalar libapache2-mod-php:
+
+```apache
+sudo apt install libapache2-mod-php 
+```
+
+```apache
+sudo apt install php-mysql
 ```
 
 ### Configuracion de usuario
@@ -73,7 +70,45 @@ $=> sudo a2ensite 005-chistes.conf
 $=> sudo systemctl reload apache2
 ```
 
-### FileZilla
+**Instalación y configuración de WordPress**
 
-- Descomprimimos el Wordpress omprimido que hemos descargado
-- Nos conectamos con FileZilla al servidor y subimos todos los archivos de la carpeta descomprimida a /var/www/marcos
+*Conectar con FileZilla y subir los archivos al servidor*
+
+**Crear DB**
+
+```SQL
+CREATE DATABASE wordpress;
+
+CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'pass';
+
+GRANT ALL PRIVILEGES on wordpress.* TO 'wordpress'@'localhost';
+
+FLUSH PRIVILEGES;
+```
+
+## Configuración en el browser
+
+**nombre.dominio/wp-admin:**
+
+```apache
+chmod 0777 /var/www/chistes
+```
+
+## Backups
+
+**Backup Ficheros y base de datos:**
+
+```apache
+mysqldump -u <usr> -p <db> > fichero_backup.sql
+```
+
+**Con tiempo:**
+
+```apache
+database_name-$(date +%Y%m%d).sql
+```
+
+Ficheros
+`
+tar xvzf tarr.tar.gz cosa1 cosa2 cosa3 ...
+`
