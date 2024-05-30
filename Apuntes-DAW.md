@@ -161,7 +161,7 @@ $=> mv phpDocumentor.phar /usr/local/bin/phpDocumentor
 
 
 ```apache
-$=> phpDocumentor run -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
+$=> phpDocumentor -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
 ```
 Si nos da error, deberemos instalar PHP XML, ya que puede ser que no venga instalado:
 ```apache
