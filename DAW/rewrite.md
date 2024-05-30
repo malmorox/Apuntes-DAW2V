@@ -48,6 +48,7 @@ sudo systemctl restart apache2
 
     ServerAdmin paco@localhost
     DocumentRoot /var/www/paco
+    Options Indexes FollowSymLinks MultiViews
 
     <Directory /var/www/paco>
         AllowOverride All
@@ -85,6 +86,16 @@ RewriteRule ^([^/]+)/([^/]+)/?$ index.php?presentacion=$1&mensaje=$2 [NC]
 - **index.php?presentacion=$1&mensaje=$2** es el archivo al que el usuario accede, pasando los valores capturados como parámetros
 
 - **[NC]** es una bandera que hace que la regla no distinga entre mayúsculas y minúsculas
+
+```apache
+DocumentRoot "/var/www/example/"
+AliasMatch "^/myapp" "/opt/myapp-1.2.3"
+<Directory "/opt/myapp-1.2.3">
+    RewriteEngine On
+    RewriteBase "/myapp/"
+    RewriteRule "^index\.html$" "welcome.html"
+</Directory>
+```
 
 ## Navegador
 
