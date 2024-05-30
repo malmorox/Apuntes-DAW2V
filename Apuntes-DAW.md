@@ -144,10 +144,15 @@ $=> wget https://phpdoc.org/phpDocumentor.phar
         *
         * @param integer $veces indica el número de ladridos
         * @param string $tipo indica el ladrido por defecto “Guau”
+        * @return string Los ladridos del perro
         *
         */
         public ladra(integer $veces, string $tipo="Guau")  {
-
+            $ladridos = "";
+            for ($i = 0; $i < $veces; $i++) {
+                $ladridos .= $tipo . " ";
+            }
+            return $ladridos;
         }
     }
 ?>
@@ -158,7 +163,6 @@ $=> chmod a+x phpDocumentor.phar
 ```apache
 $=> mv phpDocumentor.phar /usr/local/bin/phpDocumentor 
 ```
-
 
 ```apache
 $=> phpDocumentor run -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
