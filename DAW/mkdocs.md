@@ -5,13 +5,13 @@
 Necesitaremos pip, el gestor de paquetes de Python, para descargar el paquete:
 
 ```apache
-$=> sudo apt install python3-pip
+sudo apt install python3-pip
 ```
 
 ### Instalación de MkDocs
 
 ```apache
-$=> pip install mkdocs
+pip install mkdocs
 ```
 
 ### Despliegue de MkDocs
@@ -19,17 +19,17 @@ $=> pip install mkdocs
 Creamos un nuevo proyecto MkDocs en el directorio "/var/www/laura":
 
 ```apache
-$=> sudo mkdocs new /var/www/laura
+sudo mkdocs new /var/www/laura
 ```
 
 ```apache
-$=> cd /var/www/laura
+/var/www/laura
 ```
 
 Este comando construye el sitio web de MkDocs en el directorio actual:
 
 ```apache
-$=> sudo mkdocs build
+sudo mkdocs build
 ```
 
 ### Configuración de sitio con apache2
@@ -37,7 +37,7 @@ $=> sudo mkdocs build
 Abrimos y editamos el archivo de configuración de Apache para el sitio "laura.es":
 
 ```apache
-$=> sudo nano /etc/apache2/sites-available/004-laura.conf
+sudo nano /etc/apache2/sites-available/004-laura.conf
 ```
 
 ```apache
@@ -58,11 +58,11 @@ $=> sudo nano /etc/apache2/sites-available/004-laura.conf
 Habilitamos el archivo de configuración del sitio web:
 
 ```apache
-$=> sudo a2ensite 004-laura.conf
+sudo a2ensite 004-laura.conf
 ```
 
 Recargamos Apache para aplicar los cambios de configuración:
 
 ```apache
-$=> sudo systemctl reload apache2
+sudo systemctl reload apache2
 ```

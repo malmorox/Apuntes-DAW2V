@@ -4,7 +4,7 @@
 
 Necesitaremos git:
 
-```bash
+```apache
  sudo apt install git
 ```
 
@@ -14,47 +14,47 @@ Necesitaremos git:
 
 Comenzamos creando el directorio donde quereamos inicicalizar el repositorio git:
 
-```bash
+```apache
  mkdir repositorio
  cd repositorio/
 ```
 
 Inicializamos git:
 
-```bash
+```apache
  git init
 ```
 
 ### Borrar repositorio git
 
-```bash
+```apache
  rm -r .git/
 ```
 
 ### Introducir datos usuario al git local
 
-```bash
+```apache
  git config--global user.name nombre
  git config--global user.mail nombre@daw.git
 ```
 
 ### Comandos para guardar cambios
 
-```bash
+```apache
  git status // Estado del repositorio
 ```
 
-```bash
+```apache
  git add // Añadir al Stage
 ```
 
-```bash
+```apache
  git commit // Hecha la foto
 ```
 
 ### Comandos historial, cambio de ramas y merge
 
-```bash
+```apache
 * git log --all --gr> //Historial de los commi
 * git diff // Para ver las diferencias entre el archivo del repositorio y el que yo estoy usando
 * git checkout commitCode //Ir al commit que le hemos dicho
@@ -64,14 +64,14 @@ Inicializamos git:
 
 ### Claves ssh
 
-```bash
+```apache
 * ssh-keygen //se crea por defecto en la ruta ~/.ssh/id_rsa
 * cp ~/.ssh/id_rsa.pub //copiar la clave publica
 ```
 
 ### Crear el repositorio local al que hacer push y pull
 
-```bash
+```apache
 * git init --bare nombreRepositorio.git
 * git clone /rutaRepo/nombreRepositorio.git //Trabajar como con GitHub/GitLab
 ```
