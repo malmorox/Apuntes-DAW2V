@@ -2,24 +2,28 @@
 
 ## PHPDOCS
 
-### [Documentación de instalación](https://docs.phpdoc.org/3.0/guide/getting-started/installing.html#installation)
+### Instalacion: [Documentación de instalación](https://docs.phpdoc.org/3.0/guide/getting-started/installing.html#installation)
 
 ```apache
-$=> sudo apt install php8.1-cli
+ sudo apt install php8.1-cli
 ```
 
 ```apache
-$=> sudo apt install php-mbstring
+ sudo apt install php-mbstring
 ```
 
 ```apache
-$=> mkdir myDocs
-$=> cd myDocs
+ mkdir myDocs
+ cd myDocs
 ```
 
+**En la carpeta personal (home):**
+
 ```apache
-$=> wget https://phpdoc.org/phpDocumentor.phar
+ wget https://phpdoc.org/phpDocumentor.phar
 ```
+
+**Ejemplo de PHPDocs:**
 
 ```php
 <?php
@@ -39,8 +43,10 @@ $=> wget https://phpdoc.org/phpDocumentor.phar
 ?>
 ```
 
+**Si queremos tener phpDocumentor en bin:**
+
 ```apache
-$=> chmod a+x phpDocumentor.phar
+ chmod a+x phpDocumentor.phar
 ```
 
 ```apache
@@ -51,7 +57,19 @@ $=> mv phpDocumentor.phar /usr/local/bin/phpDocumentor
 $=> phpDocumentor -d rutadelsrcconclases/ -t rutadondequeremoseldocs/docs/
 ```
 
-Si nos da error, deberemos instalar PHP XML, ya que puede ser que no venga instalado:
+**Si lo queremos mantener en el home:**
+
+<span style="color:green;">// Hay que tener instalado el php-cli</span>
+
+```apache
+php ./phpDocumentor.phar
+```
+
+```apache
+./phpDocumentor.phar run -d rutaDelSrc/ -t rutaDondeQueremosElDocs/docs/
+```
+
+**Si nos da error, deberemos instalar PHP XML, ya que puede ser que no venga instalado:**
 
 ```apache
 $=> sudo apt install php8.1-xml
