@@ -19,11 +19,11 @@ pip install mkdocs
 Creamos un nuevo proyecto MkDocs en el directorio "/var/www/laura":
 
 ```apache
-sudo mkdocs new /var/www/laura
+mkdocs new /var/www/laura
 ```
 
 ```apache
-/var/www/laura
+cd /var/www/laura
 ```
 
 Este comando construye el sitio web de MkDocs en el directorio actual:
