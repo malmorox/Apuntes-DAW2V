@@ -1,4 +1,4 @@
-# Directivas
+# DIRECTIVAS
 
 - **Requiere all**
   - *Require all granted*: Permite el acceso a todos sin restricciones.

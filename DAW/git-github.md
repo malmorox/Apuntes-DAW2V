@@ -1,4 +1,4 @@
-# Git y Github
+# GIT Y GITHUB
 
 ## ¿Qué necesitamos?
 

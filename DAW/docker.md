@@ -1,4 +1,4 @@
-# Docker
+# DOCKER
 
 **Imagen =** es un archivo de pocos bytes cuyo objetivo es ser ejecutado dentro de un container, basicamente una iso con poco software.
 **Contenedor=** Es cuando cojemos una imágen y la metemos en docker

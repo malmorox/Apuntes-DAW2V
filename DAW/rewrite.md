@@ -1,4 +1,4 @@
-# Rewrite en Apache2
+# REWRITE
 
 ## Actimar el mod rewrite
 

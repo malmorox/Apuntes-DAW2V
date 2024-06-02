@@ -1,6 +1,6 @@
 # WORDPRESS
 
-## [Instalación de Wordpress](https://es.wordpress.org/download/) <span style="font-size: xx-small;"> (En el cliente) </span>
+## [Instalación de Wordpress](https://es.wordpress.org/download/) <span style="font-size: small;"> (En el cliente) </span>
 
 ### ¿Qué necesitamos?
 
@@ -17,13 +17,10 @@ Remove test database and access to it? [Y/n] => Y
 Reload privilege tables now? [Y/n] => Y
 ```
 
-si da algun error puede ser necesario instalar libapache2-mod-php:
+Si da algun error puede ser necesario instalar libapache2-mod-php:
 
 ```apache
 sudo apt install libapache2-mod-php 
-```
-
-```apache
 sudo apt install php-mysql
 ```
 
@@ -38,9 +35,6 @@ $=> sudo adduser chistes
 
 ```apache
 $=> sudo mkdir /var/www/chistes
-```
-
-```apache
 $=> sudo chown chistes:chistes /var/www/chistes
 ```
 

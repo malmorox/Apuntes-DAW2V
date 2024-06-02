@@ -1,4 +1,4 @@
-# PHPMAailer
+# PHPMAILER
 
 **Requisitos**
 <https://github.com/PHPMailer/PHPMailer>

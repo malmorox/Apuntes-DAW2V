@@ -1,4 +1,4 @@
-# Nginx Básico
+# NGINX BÁSICO
 
 ## Instalar Nginx
 
@@ -63,10 +63,10 @@ server {
         listen 80;
         listen [::]:80;
 
-        root /var/www/your_domain/html;
+        root /var/www/tu_virtualhost;
         index index.html index.htm index.nginx-debian.html;
 
-        server_name your_domain www.your_domain;
+        server_name tu_dominio www.tu_dominio;
 
         location / {
                 try_files $uri $uri/ =404;
@@ -77,7 +77,7 @@ server {
 **Para permitir que el servidor funcione**
 
 ```
-sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/archivo /etc/nginx/sites-enabled/
 ```
 
 **/etc/nginx/nginx.conf**
