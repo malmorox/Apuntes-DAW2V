@@ -16,7 +16,7 @@ Controla qué directivas pueden ser sobrescritas en archivos `.htaccess`.
 
 Controla el acceso a los recursos especificados. Se pueden utilizar diferentes parámetros para configurar el acceso, como all, ip, host, env, user, y group.
 
-- **Requiere all**
+- **Require all**
   - *Require all granted*: Permite el acceso a todos sin restricciones.
   - *Require all denied*: Niega el acceso a todos sin excepción.
 
