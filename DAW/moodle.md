@@ -58,6 +58,24 @@ Deberemos crear un directorio donde se guardarán los datos de nuestro sitio web
 mkdir /var/www/moodledata
 ```
 
+## Archivo de configuracion de Apache
+
+```apache
+<VirtualHost *:80>
+    ServerName moodle.es
+    ServerAdmin moodle@localhost
+    DocumentRoot /var/www/moodle
+
+    ErrorLog ${APACHE_LOG_DIR}/moodle.error.log
+    CustomLog ${APACHE_LOG_DIR}/moodle.access.log combined
+</VirtualHost>
+```
+
+```apache
+sudo a2ensite 006-moodle.conf
+sudo systemctl restart apache2
+```
+
 ### Crear base de datos
 
 ```SQL
