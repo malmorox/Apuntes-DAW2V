@@ -29,7 +29,7 @@ cd myDocs
         * @return string Los ladridos del perro
         *
         */
-        public ladra(integer $veces, string $tipo="Guau")  {
+        function ladra(integer $veces, string $tipo="Guau")  {
             $ladridos = "";
             for ($i = 0; $i < $veces; $i++) {
                 $ladridos .= $tipo . " ";
