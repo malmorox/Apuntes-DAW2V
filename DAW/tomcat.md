@@ -2,7 +2,7 @@
 
 ## Instalar Java
 
-```
+```apache
 sudo apt update
 sudo apt install openjdk-11-jdk
 java --version
@@ -10,49 +10,49 @@ java --version
 
 ## Creación de usuario TomCat en el Server
 
-```
+```apache
 sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 ```
 
 ## Descargar TomCat
 
-```
+```apache
 wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.tar.gz
 ```
 
 ## Descomprimir y llevar a la Carpeta de TomCat
 
-```
+```apache
 sudo tar -xf apache-tomcat-10.1.24.tar.gz -C /opt/tomcat/
 
 ```
 
 ## Crear enlace Simbolico
 
-```
+```apache
 sudo ln -s /opt/tomcat/apache-tomcat-10.1.24 /opt/tomcat/latest 
 
 ```
 
 ## Dar control al usuario tomcat
 
-```
+```apache
 sudo chown -R tomcat: /opt/tomcat
 ```
 
 ## Dar Ejecución a los TomCat
 
-```
+```apache
 sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
 ```
 
 ## Crear Fichero SystemD Unit
 
-```
+```apache
 sudo micro /etc/systemd/system/tomcat.service
 ```
 
-**Contenido del archivo**
+**Contenido del archivo:**
 
 ```apache
 [Unit]
@@ -82,13 +82,13 @@ WantedBy=multi-user.target
 
 ## DAEMON TIME
 
-```
+```apache
 sudo systemctl daemon-reload
 sudo systemctl enable --now tomcat
 sudo systemctl status tomcat
 ```
 
-```
+```apache
 sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sudo systemctl restart tomcat
@@ -96,17 +96,17 @@ sudo systemctl restart tomcat
 
 ## Configuración del Firewall
 
-```
+```apache
 sudo ufw allow 8080/tcp
 ```
 
 ## Configuración TomCat Web Management Interface
 
-```
+```apache
 sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
 ```
 
-**Contenido del Fichero**
+**Contenido del Fichero:**
 
 ```apache
 <tomcat-users>
@@ -119,13 +119,13 @@ sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
 </tomcat-users>
 ```
 
-**Manger app**
+**Manger app:**
 
-```
+```apache
 sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
 ```
 
-**Host Maneger App**
+**Host Maneger App:**
 
 ```apache
 <Context antiResourceLocking="false" privileged="true" >
@@ -136,7 +136,7 @@ sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
 </Context>
 ```
 
-```
+```apache
 sudo systemctl restart tomcat
 ```
 
