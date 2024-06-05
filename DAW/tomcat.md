@@ -17,19 +17,21 @@ sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 ## Descargar TomCat
 
 ```
-wget https://www-eu.apache.org/dist/tomcat/tomcat-10/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz -P /tmp
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.tar.gz
 ```
 
 ## Descomprimir y llevar a la Carpeta de TomCat
 
 ```
-sudo tar -xf /tmp/apache-tomcat-${VERSION}.tar.gz -C /opt/tomcat/
+sudo tar -xf apache-tomcat-10.1.24.tar.gz -C /opt/tomcat/
+
 ```
 
 ## Crear enlace Simbolico
 
 ```
-sudo ln -s /opt/tomcat/apache-tomcat-${VERSION} /opt/tomcat/latest
+sudo ln -s /opt/tomcat/apache-tomcat-10.1.24 /opt/tomcat/latest 
+
 ```
 
 ## Dar control al usuario tomcat
@@ -47,7 +49,7 @@ sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
 ## Crear Fichero SystemD Unit
 
 ```
-sudo nano /etc/systemd/system/tomcat.service
+sudo micro /etc/systemd/system/tomcat.service
 ```
 
 **Contenido del archivo**
