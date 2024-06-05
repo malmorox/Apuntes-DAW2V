@@ -54,7 +54,7 @@ sudo micro /etc/systemd/system/tomcat.service
 
 **Contenido del archivo:**
 
-```apache
+```ini
 [Unit]
 Description=Tomcat 10 servlet container
 After=network.target
@@ -108,7 +108,7 @@ sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
 
 **Contenido del Fichero:**
 
-```apache
+```xml
 <tomcat-users>
 <!--
     Comments
@@ -127,7 +127,7 @@ sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
 
 **Host Maneger App:**
 
-```apache
+```xml
 <Context antiResourceLocking="false" privileged="true" >
 <!--
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
