@@ -103,7 +103,7 @@ sudo ufw allow 8080/tcp
 ## Configuración TomCat Web Management Interface
 
 ```apache
-sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
+sudo micro /opt/tomcat/latest/conf/tomcat-users.xml
 ```
 
 **Contenido del Fichero:**
@@ -122,7 +122,7 @@ sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
 **Manger app:**
 
 ```apache
-sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+sudo micro /opt/tomcat/latest/webapps/manager/META-INF/context.xml
 ```
 
 **Host Maneger App:**
@@ -143,3 +143,33 @@ sudo systemctl restart tomcat
 ## Navegador Cliente
 
 http://<your_domain_or_IP_address>:8080
+
+ahora es posible que tomcat nos de algunos problemas de persmisos (que solo se pueda acceder desde la propia pagina) a la hora de acceder a ciertos sitios dentro de la propia pagina de tomcat, como por ejemplo la pagina de documentacion o de ejemplos.
+Para solucionar esto podemos configurar tomcat para que se ejecute en el localhost del servidor y hacer un proxi inverso desde apache.
+
+**Entrar en superusuario y dirigirse a la carpeta:**
+
+```bash
+sudo su -
+cd /opt/tomcat
+```
+
+**crear la carpeta de conf y el archivo server.xml dentro de esta:**
+
+```bash
+mkdir conf/
+cd conf/
+micro server.xml
+```
+
+**dentro del archivo de server introducir esta configuracion:**
+
+```xml
+<Connector 
+    port="8080" 
+    protocol="HTTP/1.1" 
+    address="127.0.0.1"
+    connectionTimeout="20000" 
+    redirectPort="8443" 
+  />
+```
