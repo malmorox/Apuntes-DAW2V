@@ -2,7 +2,7 @@
 
 ## Instalar Java
 
-```
+```apache
 sudo apt update
 sudo apt install openjdk-11-jdk
 java --version
@@ -10,49 +10,51 @@ java --version
 
 ## Creación de usuario TomCat en el Server
 
-```
+```apache
 sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 ```
 
 ## Descargar TomCat
 
-```
-wget https://www-eu.apache.org/dist/tomcat/tomcat-10/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz -P /tmp
+```apache
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.tar.gz
 ```
 
 ## Descomprimir y llevar a la Carpeta de TomCat
 
-```
-sudo tar -xf /tmp/apache-tomcat-${VERSION}.tar.gz -C /opt/tomcat/
+```apache
+sudo tar -xf apache-tomcat-10.1.24.tar.gz -C /opt/tomcat/
+
 ```
 
 ## Crear enlace Simbolico
 
-```
-sudo ln -s /opt/tomcat/apache-tomcat-${VERSION} /opt/tomcat/latest
+```apache
+sudo ln -s /opt/tomcat/apache-tomcat-10.1.24 /opt/tomcat/latest 
+
 ```
 
 ## Dar control al usuario tomcat
 
-```
+```apache
 sudo chown -R tomcat: /opt/tomcat
 ```
 
 ## Dar Ejecución a los TomCat
 
-```
+```apache
 sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
 ```
 
 ## Crear Fichero SystemD Unit
 
-```
-sudo nano /etc/systemd/system/tomcat.service
-```
-
-**Contenido del archivo**
-
 ```apache
+sudo micro /etc/systemd/system/tomcat.service
+```
+
+**Contenido del archivo:**
+
+```ini
 [Unit]
 Description=Tomcat 10 servlet container
 After=network.target
@@ -80,13 +82,13 @@ WantedBy=multi-user.target
 
 ## DAEMON TIME
 
-```
+```apache
 sudo systemctl daemon-reload
 sudo systemctl enable --now tomcat
 sudo systemctl status tomcat
 ```
 
-```
+```apache
 sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sudo systemctl restart tomcat
@@ -94,19 +96,19 @@ sudo systemctl restart tomcat
 
 ## Configuración del Firewall
 
-```
+```apache
 sudo ufw allow 8080/tcp
 ```
 
 ## Configuración TomCat Web Management Interface
 
-```
-sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
-```
-
-**Contenido del Fichero**
-
 ```apache
+sudo micro /opt/tomcat/latest/conf/tomcat-users.xml
+```
+
+**Contenido del Fichero:**
+
+```xml
 <tomcat-users>
 <!--
     Comments
@@ -117,15 +119,15 @@ sudo nano /opt/tomcat/latest/conf/tomcat-users.xml
 </tomcat-users>
 ```
 
-**Manger app**
-
-```
-sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
-```
-
-**Host Maneger App**
+**Manger app:**
 
 ```apache
+sudo micro /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+```
+
+**Host Maneger App:**
+
+```xml
 <Context antiResourceLocking="false" privileged="true" >
 <!--
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
@@ -134,10 +136,49 @@ sudo nano /opt/tomcat/latest/webapps/manager/META-INF/context.xml
 </Context>
 ```
 
-```
+```apache
 sudo systemctl restart tomcat
 ```
 
 ## Navegador Cliente
 
 http://<your_domain_or_IP_address>:8080
+
+>Ahora es posible que tomcat nos de algunos problemas de persmisos (que solo se pueda acceder desde la propia pagina) a la hora de acceder a ciertos sitios dentro de la propia pagina de tomcat, como por ejemplo la pagina de documentacion o de ejemplos.
+
+>Para solucionar esto podemos configurar tomcat para que se ejecute en el localhost del servidor y hacer un proxi inverso desde apache.
+
+### Este es el error:
+
+`403 Access Denied`
+
+`You are not authorized to view this page.`
+
+`By default the documentation web application is only accessible from a browser running on the same machine as Tomcat. If you wish to modify this restriction, you'll need to edit the documentation web applications's context.xml file.`
+
+**Entrar en superusuario y dirigirse a la carpeta:**
+
+```bash
+sudo su -
+cd /opt/tomcat
+```
+
+**crear la carpeta de conf y el archivo server.xml dentro de esta:**
+
+```bash
+mkdir conf/
+cd conf/
+micro server.xml
+```
+
+**dentro del archivo de server introducir esta configuracion:**
+
+```xml
+<Connector 
+    port="8080" 
+    protocol="HTTP/1.1" 
+    address="127.0.0.1"
+    connectionTimeout="20000" 
+    redirectPort="8443" 
+  />
+```

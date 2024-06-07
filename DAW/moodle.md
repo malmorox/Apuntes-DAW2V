@@ -92,6 +92,7 @@ Database port: 3306
 
 ### Instalación de Moodle <span style="font-size: small;"> (En el navegador) </span>
 
+
 En el cliente abrir el navegador:
 
 `
