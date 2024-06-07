@@ -148,7 +148,7 @@ http://<your_domain_or_IP_address>:8080
 
 >Para solucionar esto podemos configurar tomcat para que se ejecute en el localhost del servidor y hacer un proxi inverso desde apache.
 
-### Este es el error:
+### Este es el error
 
 `403 Access Denied`
 
@@ -182,3 +182,23 @@ micro server.xml
     redirectPort="8443" 
   />
 ```
+
+**ejemplo de proxi inverso para poder acceder ahora al tomcat:**
+
+```apache
+<VirtualHost *:80>
+ ServerAdmin webmaster@localhost
+ ServerName tomcat.com
+
+ ProxyPass "/" "http://tomcat.com:8080/"
+ ProxyPassReverse "/" "http://tomcat.com:8080/"
+ 
+
+ ErrorLog ${APACHE_LOG_DIR}/tomcat.error.log
+ CustomLog ${APACHE_LOG_DIR}/tomcat.access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+
+### IMPORTANTE habilitar el nombre de dominio "tomcat.com" en el /etc/hosts del cliente y del servidor
