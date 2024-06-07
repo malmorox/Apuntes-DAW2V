@@ -144,10 +144,11 @@ sudo systemctl restart tomcat
 
 http://<your_domain_or_IP_address>:8080
 
-Ahora es posible que tomcat nos de algunos problemas de persmisos (que solo se pueda acceder desde la propia pagina) a la hora de acceder a ciertos sitios dentro de la propia pagina de tomcat, como por ejemplo la pagina de documentacion o de ejemplos.
-Para solucionar esto podemos configurar tomcat para que se ejecute en el localhost del servidor y hacer un proxi inverso desde apache.
+>Ahora es posible que tomcat nos de algunos problemas de persmisos (que solo se pueda acceder desde la propia pagina) a la hora de acceder a ciertos sitios dentro de la propia pagina de tomcat, como por ejemplo la pagina de documentacion o de ejemplos.
 
-Este es el error:
+>Para solucionar esto podemos configurar tomcat para que se ejecute en el localhost del servidor y hacer un proxi inverso desde apache.
+
+### Este es el error:
 
 `403 Access Denied`
 
