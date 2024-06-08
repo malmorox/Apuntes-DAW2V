@@ -187,3 +187,25 @@ Monta un volumen, enlazando un directorio del host con un directorio del contene
 <span style="color:red;">nginx</span>:
 Especifica la imagen a utilizar para crear el contenedor
 
+## Configuracion extra
+
+como hemos asignado la ip <span style="color:cyan;">127.0.0.1</span> a la que solo se podria acceder desde la maquina en la que se ejecuta el contenedor, para poder acceder desde otra maquina vamos a tener que configurar un proxy inverso desde Apache o Nginx (ahora solo lo vamos a hacer con Apache)
+
+### Ejemplo de configuracion del proxy inverso
+
+```apache
+<VirtualHost *:80>
+        ServerName tu-nombre-dominio.es
+
+        ProxyPass "/" "http://127.0.0.1:8050/"
+        ProxyPassReverse "/" "http://127.0.0.1:8050/"
+
+
+        ErrorLog ${APACHE_LOG_DIR}/nginx-php.error.log
+        CustomLog ${APACHE_LOG_DIR}/nginx-php.access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+
+### IMPORTANTE que la ip y el puerto en el ProxyPass/ProxyPassReverse sea la misma que habiamos puesto en el comando de docker (<span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>)
