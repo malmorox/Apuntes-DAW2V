@@ -69,6 +69,8 @@ sudo systemctl reload apache2
 
 Ahora, cuando accedas a http://proxy-inverso.es, Apache2 redirigirá las solicitudes a http://phpdocs.es (donde encontraras un PHPDocs), que se resolverá como 192.168.56.2 gracias a la entrada en /etc/hosts.
 
+hay que tenter en cuneta que al estar usando un nombre de dominio debe estar registrado en el /etc/hosts del servidor si no no encontrá la pagina a la que intentas redirigir (en este ejemplo se debe registar phpdocs.es)
+
 
 ### Usando un puerto especifico con IP:
 

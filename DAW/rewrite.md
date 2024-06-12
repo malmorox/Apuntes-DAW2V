@@ -1,4 +1,4 @@
-# REWRITE
+ REWRITE
 
 ## Actimar el mod rewrite
 
