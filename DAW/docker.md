@@ -163,7 +163,7 @@ docker pull nginx
 **Servir archivos con esta imagen:**
 
 ```apache
-docker run -d --name my-apache-app -p 127.0.0.1:8080:80 -v /contenido/:/usr/local/nginx/html:ro nginx
+docker run -d --name my-apache-app -p 127.0.0.1:8080:80 -v /contenido/:/usr/share/nginx/html:ro nginx
 ```
 
 **Explicacion del comando:**
