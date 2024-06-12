@@ -51,13 +51,13 @@ unzip archivo
 **Crear Tar:**
 
 ```apache
-tar -cvf
+tar -cvf 
 ```
 
-**Crear tar.gz:**
+**Crear tar.gz / tgz:**
 
 ```apache
-tar -cvzf
+tar -cvzf archivo.tgz carpeta-a-comprimir/
 ```
 
 **Descomprimir:**

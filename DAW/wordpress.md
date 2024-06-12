@@ -8,7 +8,7 @@ Necesitaremos PHP 7.4 o superior y  MySQL 5.7-MariaDB 10.4 o superior.
 
 **mysql_secure_installation:**
 
-```apache
+```bash
 Switch to unix_socket authentication [Y/n] => Y
 Change the root password? [Y/n] => n
 Remove anonymous users? [Y/n] => Y
@@ -34,14 +34,28 @@ $=> sudo adduser chistes
 ```
 
 ```apache
-$=> sudo mkdir /var/www/chistes
-$=> sudo chown chistes:chistes /var/www/chistes
+sudo mkdir /var/www/chistes
+```
+```apache 
+chmod 755 /var/www/chistes
+```
+```apache
+sudo chown -R www-data:www-data /var/www/chistes
+```
+
+Le tenemos que meter en el grupo al usuario que demos los permisos de la carpeta (si no usamos el www-data):
+```apache
+sudo usermod -a -G www-data chistes
+```
+Así sería: 
+```apache
+sudo chown -R chistes:www-data /var/www/chistes
 ```
 
 ### Configuración de sitio con apache2
 
 ```apache
-$=> sudo nano /etc/apache2/sites-available/005-chistes.conf
+sudo nano /etc/apache2/sites-available/005-chistes.conf
 ```
 
 ```apache
@@ -80,29 +94,21 @@ GRANT ALL PRIVILEGES on wordpress.* TO 'wordpress'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-## Configuración en el browser
-
-**nombre.dominio/wp-admin:**
-
-```apache
-chmod 0777 /var/www/chistes
-```
-
 ## Backups
 
-**Backup Ficheros y base de datos:**
+**Backup base de datos:**
 
 ```apache
 mysqldump -u <usr> -p <db> > fichero_backup.sql
 ```
 
-**Con tiempo:**
+Con tiempo:
 
 ```apache
 database_name-$(date +%Y%m%d).sql
 ```
 
-Ficheros
-`
-tar xvzf tarr.tar.gz cosa1 cosa2 cosa3 ...
-`
+**Backup ficheros:**
+
+Comprimir: `sudo tar -cvzf backup.tar.gz > /home/chistes/backups`
+Descomprimir: `sudo tar -xvzf /home/chistes/backupsbackup.tar.gz > dondesea`
