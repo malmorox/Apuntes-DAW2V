@@ -152,6 +152,8 @@ Monta un volumen, enlazando un directorio del host con un directorio del contene
 <span style="color:red;">php:8.3.8RC1-apache-bullseye</span>:
 Especifica la imagen a utilizar para crear el contenedor:
 
+IMPORTANTE: Si el archivo php no se llama index.php, tienes que poner en la barra del navegador nomre_del_dominio.com/nombre_archivo.php
+
 ### Nginx
 
 **Descargar la imagen:**
