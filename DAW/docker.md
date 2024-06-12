@@ -80,71 +80,132 @@ sudo usermod -aG docker userName
 
 <img src="./img/cheatDocker.png">
 
-## Instalar Docker Image
-
-**Hub Docker**
-
-```apache
-sudo docker pull $nombre
-$nombre = imagen (ej.: httpd)
-```
-
 # Crear Docker
 
-```apache
- git clone https://github.com/docker/getting-started-app.git
-```
+## Imagenes necesarias
 
-```
-├── getting-started-app/
-│ ├── package.json
-│ ├── README.md
-│ ├── spec/
-│ ├── src/
-│ └── yarn.lock
-```
+### Apache
 
-## Build the app´s image
-
-**Directorio en el que trabajamos**
+**Descargar la imagen:**
 
 ```apache
-cd /path/to/getting-started-app
+docker pull httpd
 ```
 
-**Crear archivo**
+**Servir archivos con esta imagen:**
 
 ```apache
-touch Dockerfile
+docker run -d --name my-apache-app -p 127.0.0.1:8080:80 -v /contenido/:/usr/local/apache2/htdocs/ httpd
 ```
 
-**Contenido del fichero**
+**Explicacion del comando:**
 
-```docker
-# syntax=docker/dockerfile:1
 
-FROM node:18-alpine
-WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
-EXPOSE 3000
-```
+<span style="color:red;">-d</span>: Ejecuta el contenedor en segundo plano (detached mode), permitiendo que la terminal quede libre para otros comandos.
 
-**Comandos para el build**
+<span style="color:red;">--name</span> <span style="color:cyan;">my-apache-app</span>:
+Asigna el nombre  <span style="color:cyan;">my-apache-app</span> al contenedor. Esto facilita la gestión y referencia del contenedor por su nombre.
+
+<span style="color:red;">-p</span>  <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>:<span style="color:orange;">80</span>
+  * <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>: El puerto <span style="color:violet;">8050</span> en <span style="color:cyan;">localhost</span> del host.
+  * <span style="color:orange;">80</span>: El puerto <span style="color:orange;">80</span> dentro del contenedor, donde Apache HTTP Server escucha.
+
+<span style="color:red;">-v</span>: <span style="color:green;">/mkdocs-docker/</span>:<span style="color:cyan;">/usr/local/apache2/htdocs/</span>
+Monta un volumen, enlazando un directorio del host con un directorio del contenedor:
+  * <span style="color:green;">/mkdocs-docker/</span>: El directorio en el host (directorio actual relativo) que contiene los archivos que quieres servir.
+  * <span style="color:cyan;">/usr/local/apache2/htdocs/</span>: El directorio en el contenedor donde Apache sirve los archivos.
+
+<span style="color:red;">httpd</span>:
+Especifica la imagen a utilizar para crear el contenedor:
+
+### Php + Apache
+
+**Descargar la imagen:**
 
 ```apache
-docker build -t getting-started .
+docker pull php:8.3.8RC1-apache-bullseye
 ```
 
-**Arrancar el contenedor**
+**Servir archivos con esta imagen:**
 
 ```apache
-docker run -dp 127.0.0.1:3000:3000 getting-started
+docker run -d --name my-apache-app -p 127.0.0.1:8080:80 -v /contenido/:/var/www/html php:8.3.8RC1-apache-bullseye
 ```
 
-**Listar dockers**
+**Explicacion del comando:**
+
+
+<span style="color:red;">-d</span>: Ejecuta el contenedor en segundo plano (detached mode), permitiendo que la terminal quede libre para otros comandos.
+
+<span style="color:red;">--name</span> <span style="color:cyan;">my-apache-app</span>:
+Asigna el nombre  <span style="color:cyan;">my-apache-app</span> al contenedor. Esto facilita la gestión y referencia del contenedor por su nombre.
+
+<span style="color:red;">-p</span>  <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>:<span style="color:orange;">80</span>
+  * <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>: El puerto <span style="color:violet;">8050</span> en <span style="color:cyan;">localhost</span> del host.
+  * <span style="color:orange;">80</span>: El puerto <span style="color:orange;">80</span> dentro del contenedor, donde Apache HTTP Server escucha.
+
+<span style="color:red;">-v</span>: <span style="color:green;">/mkdocs-docker/</span>:<span style="color:cyan;">/var/www/html</span>
+Monta un volumen, enlazando un directorio del host con un directorio del contenedor:
+  * <span style="color:green;">/mkdocs-docker/</span>: El directorio en el host (directorio actual relativo) que contiene los archivos que quieres servir.
+  * <span style="color:cyan;">/var/www/html</span>: El directorio en el contenedor donde Apache sirve los archivos.
+
+<span style="color:red;">php:8.3.8RC1-apache-bullseye</span>:
+Especifica la imagen a utilizar para crear el contenedor:
+
+### Nginx
+
+**Descargar la imagen:**
 
 ```apache
-docker ps
+docker pull nginx
 ```
+
+**Servir archivos con esta imagen:**
+
+```apache
+docker run -d --name my-apache-app -p 127.0.0.1:8080:80 -v /contenido/:/usr/local/nginx/html:ro nginx
+```
+
+**Explicacion del comando:**
+
+
+<span style="color:red;">-d</span>: Ejecuta el contenedor en segundo plano (detached mode), permitiendo que la terminal quede libre para otros comandos.
+
+<span style="color:red;">--name</span> <span style="color:cyan;">my-nginx-app</span>:
+Asigna el nombre  <span style="color:cyan;">my-nginx-app</span> al contenedor. Esto facilita la gestión y referencia del contenedor por su nombre.
+
+<span style="color:red;">-p</span>  <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>:<span style="color:orange;">80</span>
+  * <span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>: El puerto <span style="color:violet;">8050</span> en <span style="color:cyan;">localhost</span> del host.
+  * <span style="color:orange;">80</span>: El puerto <span style="color:orange;">80</span> dentro del contenedor, donde Nginx escucha.
+
+<span style="color:red;">-v</span>: <span style="color:green;">/mkdocs-docker/</span>:<span style="color:cyan;">/usr/local/nginx/html</span>:<span style="color:violet;">ro</span>
+Monta un volumen, enlazando un directorio del host con un directorio del contenedor:
+  * <span style="color:green;">/mkdocs-docker/</span>: El directorio en el host (directorio actual relativo) que contiene los archivos que quieres servir.
+  * <span style="color:cyan;">/usr/local/nginx/html/</span>: El directorio en el contenedor donde Nginx sirve los archivos.
+  * <span style="color:violet;">ro</span>: (read only) runea la imagen solo para lectura
+
+<span style="color:red;">nginx</span>:
+Especifica la imagen a utilizar para crear el contenedor
+
+## Configuracion extra
+
+como hemos asignado la ip <span style="color:cyan;">127.0.0.1</span> a la que solo se podria acceder desde la maquina en la que se ejecuta el contenedor, para poder acceder desde otra maquina vamos a tener que configurar un proxy inverso desde Apache o Nginx (ahora solo lo vamos a hacer con Apache)
+
+### Ejemplo de configuracion del proxy inverso
+
+```apache
+<VirtualHost *:80>
+        ServerName tu-nombre-dominio.es
+
+        ProxyPass "/" "http://127.0.0.1:8050/"
+        ProxyPassReverse "/" "http://127.0.0.1:8050/"
+
+
+        ErrorLog ${APACHE_LOG_DIR}/nginx-php.error.log
+        CustomLog ${APACHE_LOG_DIR}/nginx-php.access.log combined
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+
+### IMPORTANTE que la ip y el puerto en el ProxyPass/ProxyPassReverse sea la misma que habiamos puesto en el comando de docker (<span style="color:cyan;">127.0.0.1</span>:<span style="color:violet;">8050</span>)

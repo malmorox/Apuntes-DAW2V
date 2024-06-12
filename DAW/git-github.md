@@ -8,70 +8,308 @@ Necesitaremos git:
  sudo apt install git
 ```
 
-## Repositorio en local con Git
+## Manejo de repositorios
 
-### Crear el repositorio git
+### Creación de un repositorio bare
 
-Comenzamos creando el directorio donde quereamos inicicalizar el repositorio git:
+#### Crear el directorio
 
-```apache
- mkdir repositorio
- cd repositorio/
+```bash
+mkdir /home/usuario/repositorio
 ```
 
-Inicializamos git:
+#### Ir al directorio
 
-```apache
- git init
+```bash
+cd /home/usuario/repositorio
 ```
 
-### Borrar repositorio git
+#### Inicializar el repositorio bare
 
-```apache
- rm -r .git/
+```
+git init --bare mi-repositorio.git
 ```
 
-### Introducir datos usuario al git local
+### Creación de un repositorio
 
-```apache
- git config--global user.name nombre
- git config--global user.mail nombre@daw.git
+#### Crear el directorio
+
+```
+mkdir /home/usuario/repositorio
 ```
 
-### Comandos para guardar cambios
+#### Ir al directorio
 
-```apache
- git status // Estado del repositorio
+```
+cd /home/usuario/repositorio
 ```
 
-```apache
- git add // Añadir al Stage
+#### Inicializar el repositorio
+
+```
+git init
 ```
 
-```apache
- git commit // Hecha la foto
+### Borrar un repositorio bare
+
+```
+cd /home/usuario
+rm -rf /repositorio
 ```
 
-### Comandos historial, cambio de ramas y merge
+### Borrar un repositorio
 
-```apache
-* git log --all --gr> //Historial de los commi
-* git diff // Para ver las diferencias entre el archivo del repositorio y el que yo estoy usando
-* git checkout commitCode //Ir al commit que le hemos dicho
-* git switch -c nuevaRama //Crea y cambia de rama a la creada
-* git merge nombreRama //Junta la rama en la que estamos con la rama nombreRama
+```
+cd /home/usuario/repositorio
+rm -rf .git/
 ```
 
-### Claves ssh
+### Clonación de un repositorio bare
 
-```apache
-* ssh-keygen //se crea por defecto en la ruta ~/.ssh/id_rsa
-* cp ~/.ssh/id_rsa.pub //copiar la clave publica
+```
+git clone /home/usuario/repositorio
 ```
 
-### Crear el repositorio local al que hacer push y pull
+### Clonación de un repositorio
 
-```apache
-* git init --bare nombreRepositorio.git
-* git clone /rutaRepo/nombreRepositorio.git //Trabajar como con GitHub/GitLab
+#### Con SSH
+
+```
+git clone usuario@servidor:/home/usuario/repositorio.git
+```
+
+#### Con HTTPS
+
+```
+git clone https://servidor/repositorio.git
+```
+
+## Uso de repositorios
+
+### Ver estado
+
+```
+git status
+```
+
+### Añadir archivos al repositorio
+
+```
+git add .
+```
+
+### Crear commit
+
+```
+git commit -m "Mensaje"
+```
+
+### Subir archivos al repositorio
+
+```
+git push
+```
+
+### Actualizar repositorio
+
+```
+git pull
+```
+
+### Crear rama
+
+#### Crearla
+
+```
+git branch rama
+```
+
+#### Cambiarse a ella
+
+```
+git checkout rama
+```
+
+#### Crearla y cambiarse a ella
+
+```
+git checkout -b rama
+```
+
+### Fusionar ramas
+
+#### Primero ir a la rama a la que le queremos fusionar la otra
+
+```
+git checkout main
+```
+
+#### Una vez allí, fusionar la rama
+
+```
+git merge rama
+```
+
+### Ver ramas
+
+```
+git branch
+```
+
+### Eliminar rama
+
+```
+git branch -d rama
+```
+
+### Ver historial
+
+```
+git log
+```
+
+#### Historial de un archivo
+
+```
+git log archivo
+```
+
+#### Historial de una rama
+
+```
+git log rama
+```
+
+#### Historial gráfico
+
+```
+git log --graph
+```
+
+#### Todo lo anterior en una línea
+
+```
+git log --all --graph --oneline
+```
+
+### Ver diferencias
+
+```
+git diff
+```
+
+### Ver diferencias entre ramas
+
+```
+git diff rama1 rama2
+```
+
+### Ver diferencias entre commits
+
+```
+git diff commit1 commit2
+```
+
+### Ignorar archivos
+
+```
+nano .gitignore
+```
+
+### Amend
+
+#### Añadir archivos al último commit
+
+```
+git commit -m 'Commit message'
+git add archivo_olvidado
+git commit --amend
+```
+
+#### Cambiar el mensaje del último commit
+
+```
+git commit -m 'Commit message'
+git add archivo_olvidado
+git commit --amend -m 'Nuevo mensaje'
+```
+
+### Reset
+
+#### Resetear el último commit
+
+```
+git reset --soft HEAD~1
+```
+
+#### Resetear el último commit y quitar los archivos del staging area
+
+```
+git reset --mixed HEAD~1
+```
+
+#### Resetear el último commit y quitar los archivos del staging area y del working directory
+
+```
+git reset --hard HEAD~1
+```
+
+#### Resetear el último commit, quitar los archivos del staging area y del working directory y aplicar al ancestro primero
+
+```
+git reset --hard HEAD^
+```
+
+### Revert
+
+#### Revertir el último commit
+
+```
+git revert HEAD
+```
+
+#### Revertir un commit concreto
+
+```
+git revert numero_commit
+```
+
+### Stash
+
+#### Guardar cambios en el stash
+
+```
+git stash
+```
+
+#### Ver los cambios guardados en el stash
+
+```
+git stash list
+```
+
+#### Aplicar los cambios guardados en el stash
+
+```
+git stash apply
+```
+
+#### Eliminar los cambios guardados en el stash
+
+```
+git stash drop
+```
+
+#### Aplicar y eliminar los cambios guardados en el stash
+
+```
+git stash pop
+```
+
+Y añadimos los archivos que queremos ignorar, por ejemplo:
+
+```
+*.log
+/tmp
+*.idea
 ```
