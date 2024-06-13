@@ -33,6 +33,10 @@ minuto mes diaMes mes diaSemana /ruta/archivo.sh
 */2 * * * * mv /tmp/disco.txt /home/tricky/disco$(date +\%Y-\%m-\%d-\%H\%M).txt
 ```
 
+Ejecutar un .sh desde crontab:
+```
+* * * * * /ruta/del/sh/backup.sh
+```
 ```
 1 #!/bin/bash
 2
@@ -48,6 +52,9 @@ minuto mes diaMes mes diaSemana /ruta/archivo.sh
 12 FICHERO_BACKUP="$DIRECTORIO_BACKUPS/backup_moodle_$FECHA.sql" 
 13
 14 mysqldump -u $DB USUARIO -p$DB CONTRA $DB NOMBRE > $FICHERO BACKUP
+```
+```
+* * * * * tar zcf /var/www/abgordinaria/t2/ej1 > /home/abgordinaria/backup.tgz
 ```
 
 

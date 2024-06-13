@@ -43,9 +43,9 @@ chmod 755 /var/www/chistes
 sudo chown -R www-data:www-data /var/www/chistes
 ```
 
-Le tenemos que meter en el grupo al usuario que demos los permisos de la carpeta (si no usamos el www-data):
+Le tenemos que meter en el grupo al usuario que demos los permisos de la carpeta (si no usamos el www-data) NO FUNCIONA:
 ```apache
-sudo usermod -a -G www-data chistes
+sudo usermod -aG www-data chistes
 ```
 Así sería: 
 ```apache
@@ -105,10 +105,10 @@ mysqldump -u <usr> -p <db> > fichero_backup.sql
 Con tiempo:
 
 ```apache
-database_name-$(date +%Y%m%d).sql
+database_name-$(date +\%Y-\%m-\%d).sql
 ```
 
 **Backup ficheros:**
 
-Comprimir: `sudo tar -cvzf backup.tar.gz > /home/chistes/backups`
+Comprimir: `sudo tar -cvzf /ruta/debackup.tar.gz > /home/chistes/backups`
 Descomprimir: `sudo tar -xvzf /home/chistes/backupsbackup.tar.gz > dondesea`
