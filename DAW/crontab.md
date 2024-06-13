@@ -37,6 +37,10 @@ Ejecutar un .sh desde crontab:
 ```
 * * * * * /ruta/del/sh/backup.sh
 ```
+Hay que darle ejecución para q ejecute en archivo:
+```
+chmod +x /ruta/del/sh/backup.sh
+```
 ```
 1 #!/bin/bash
 2
